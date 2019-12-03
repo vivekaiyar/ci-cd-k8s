@@ -18,10 +18,12 @@ node{
       sh "npm test"
   }
   stage('Docker Build, Push'){
-    withDockerRegistry([credentialsId: "${Creds}", url: 'https://index.docker.io/v1/']) {
-      sh "docker build -t ${ImageName}:${imageTag} ."
-      sh "docker push ${ImageName}"
-        }
+    //withDockerRegistry([credentialsId: "${Creds}", url: 'https://index.docker.io/v1/']) {
+      //sh "docker build -t ${ImageName}:${imageTag} ."
+      //sh "docker push ${ImageName}"
+        //}
+    sh "docker build -t ${ImageName}:${imageTag} ."
+    sh "docker push ${ImageName}"
 
     }
     stage('Deploy on K8s'){
