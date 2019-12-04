@@ -18,9 +18,9 @@ node{
       sh "npm test"
   }
   stage('Docker Build, Push'){
-    withDockerRegistry([url: 'art4lab0.labs.mastercard.com:6565']) {
+    withDockerRegistry([credentialsId: "Docker Registry Auth", url: 'art4lab0.labs.mastercard.com:6565']) {
       sh "docker build -t ${ImageName}:${imageTag} ."
-      //sh "docker push ${ImageName}"
+      sh "docker push ${ImageName}"
         }
     //sh "docker build -t ${ImageName}:${imageTag} ."
     //sh "docker push ${ImageName}"
