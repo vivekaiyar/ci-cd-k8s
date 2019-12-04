@@ -24,8 +24,8 @@ node{
         //}
        
       sh "docker build -t ${ImageName}:${imageTag} ."
-      sh "docker tag ${ImageName} art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}"
-      sh "docker push art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}"
+      sh "docker tag ${ImageName} art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}:${imageTag}"
+      sh "docker push art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}:${imageTag}"
 
     }
     stage('Deploy on K8s'){
