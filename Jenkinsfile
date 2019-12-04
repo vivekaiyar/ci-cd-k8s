@@ -18,12 +18,14 @@ node{
       sh "npm test"
   }
   stage('Docker Build, Push'){
-    withDockerRegistry([credentialsId: "Docker Registry Auth", url: 'art4lab0.labs.mastercard.com:6565']) {
+    //withDockerRegistry([credentialsId: "Docker Registry Auth", url: 'art4lab0.labs.mastercard.com:6565']) {
+      //sh "docker build -t ${ImageName}:${imageTag} ."
+      //sh "docker push ${ImageName}"
+        //}
+       
       sh "docker build -t ${ImageName}:${imageTag} ."
-      sh "docker push ${ImageName}"
-        }
-    //sh "docker build -t ${ImageName}:${imageTag} ."
-    //sh "docker push ${ImageName}"
+      sh "docker tag ${ImageName} https://labs.mastercard.com/artifactory/xray-jenkins_maven/${ImageName}"
+      sh "docker push https://labs.mastercard.com/artifactory/xray-jenkins_maven/${ImageName}"
 
     }
     stage('Deploy on K8s'){
