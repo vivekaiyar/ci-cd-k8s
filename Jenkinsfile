@@ -25,7 +25,7 @@ node{
        
       sh "docker build -t ${ImageName}:${imageTag} ."
       //sh "docker tag ${ImageName} https://labs.mastercard.com/artifactory/xray-jenkins-npm/${ImageName}"
-      sh "docker push https://labs.mastercard.com/artifactory/${ImageName}"
+      sh "docker push art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}"
 
     }
     stage('Deploy on K8s'){
