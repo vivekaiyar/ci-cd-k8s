@@ -24,7 +24,7 @@ node{
         //}
        
       sh "docker build -t ${ImageName}:${imageTag} ."
-      sh "docker tag ${ImageName} art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}:${imageTag}"
+      sh "docker tag ${ImageName}:${imageTag} art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}:${imageTag}"
       sh "docker push art4lab0.labs.mastercard.com:6565/artifactory/${ImageName}:${imageTag}"
 
     }
