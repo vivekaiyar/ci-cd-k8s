@@ -24,8 +24,8 @@ node{
         //}
        
       sh "docker build -t ${ImageName}:${imageTag} ."
-      sh "docker tag ${ImageName}:${imageTag} http://art4lab1.labs.mastercard.com:6565/artifactory/repository/local/xray-jenkins-npm/${ImageName}:${imageTag}"
-      sh "docker push http://art4lab1.labs.mastercard.com:6565/artifactory/repository/local/xray-jenkins-npm/${ImageName}:${imageTag}"
+      sh "docker tag ${ImageName}:${imageTag} 10.157.192.27:6565/artifactory/repository/local/xray-jenkins-npm/${ImageName}:${imageTag}"
+      sh "docker push 10.157.192.27:6565/artifactory/repository/local/xray-jenkins-npm/${ImageName}:${imageTag}"
 
     }
     stage('Deploy on K8s'){
