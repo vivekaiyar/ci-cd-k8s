@@ -18,15 +18,12 @@ node{
       sh "npm test"
   }
   stage('Docker Build, Push'){
-    //withDockerRegistry([credentialsId: "Docker Registry Auth", url: 'art4lab0.labs.mastercard.com:6565']) {
-      //sh "docker build -t ${ImageName}:${imageTag} ."
-      //sh "docker push ${ImageName}"
-        //}
+    withCredentials([usernameColonPassword(credentialsId: 'art4lab0-docker-deploy', variable: 'docker_deploy')]) {
+            sh "docker build -t ${ImageName}:${imageTag} ."
+            sh "docker tag ${ImageName}:${imageTag} art4lab0.labs.mastercard.com:5001/artifactory/xray-jenkins-npm/${ImageName}:${imageTag}"
+            sh "docker push art4lab0.labs.mastercard.com:5001/artifactory/xray-jenkins-npm/${ImageName}:${imageTag}"
+        }
        
-      sh "docker build -t ${ImageName}:${imageTag} ."
-      sh "docker tag ${ImageName}:${imageTag} art4lab0.labs.mastercard.com:5001/artifactory/xray-jenkins-npm/${ImageName}:${imageTag}"
-      sh "docker push art4lab0.labs.mastercard.com:5001/artifactory/xray-jenkins-npm/${ImageName}:${imageTag}"
-
     }
     stage('Deploy on K8s'){
 
