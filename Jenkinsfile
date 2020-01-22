@@ -1,6 +1,6 @@
 node{
   def Namespace = "default"
-  def ImageName = "sayarapp/sayarapp"
+  def ImageName = "vivekaiyar/vivekaiyar"
   def Creds	= "39df95e1-f34f-44c8-8cdc-98989764513b"
   try{
   stage('Checkout'){
