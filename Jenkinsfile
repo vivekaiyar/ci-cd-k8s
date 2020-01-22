@@ -1,7 +1,7 @@
 node{
   def Namespace = "default"
-  def ImageName = "sayarapp/sayarapp"
-  def Creds	= "2dfd9d0d-a300-49ee-aaaf-0a3efcaa5279"
+  def ImageName = "vivekaiyar/node"
+  def Creds	= "39df95e1-f34f-44c8-8cdc-98989764513b"
   try{
   stage('Checkout'){
       git 'https://github.com/vivekaiyar/ci-cd-k8s.git'
@@ -19,7 +19,7 @@ node{
   }
   stage('Docker Build, Push'){
     script {
-    docker.withRegistry('https://art4lab0.labs.mastercard.com:5001', 'art4lab0-docker-deploy', url: 'art4lab0.labs.mastercard.com:5001/artifactory/docker-internal/test/') {
+    withDockerRegistry(credentialsId: '39df95e1-f34f-44c8-8cdc-98989764513b', url: 'https://index.docker.io/') {
             sh "docker build -t ${ImageName}:${imageTag} ."
             //sh "docker tag ${ImageName}:${imageTag} art4lab0.labs.mastercard.com:5001/artifactory/docker-internal/test/${ImageName}:${imageTag}"
             sh "docker push ${ImageName}:${imageTag}"
