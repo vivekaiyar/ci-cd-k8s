@@ -19,7 +19,7 @@ node{
   }
   stage('Docker Build, Push'){
     script {
-    withDockerRegistry(credentialsId: '39df95e1-f34f-44c8-8cdc-98989764513b', url: 'https://index.docker.io/') {
+    withDockerRegistry(credentialsId: '39df95e1-f34f-44c8-8cdc-98989764513b', url: 'https://hub.docker.com/repository/docker/vivekaiyar/') {
             sh "docker build -t ${ImageName}:${imageTag} ."
             //sh "docker tag ${ImageName}:${imageTag} art4lab0.labs.mastercard.com:5001/artifactory/docker-internal/test/${ImageName}:${imageTag}"
             sh "docker push ${ImageName}:${imageTag}"
